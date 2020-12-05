@@ -1,7 +1,6 @@
 package com.aneirine.springown.exception.handler;
 
-import com.telecard.prostir.exception.*;
-import com.telecard.prostir.utils.validation.ValidationErrorBuilder;
+import com.aneirine.springown.exception.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

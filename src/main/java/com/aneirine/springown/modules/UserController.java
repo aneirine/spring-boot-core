@@ -25,7 +25,7 @@ public class UserController {
             @ApiResponse(responseCode = "201", description = "User created",
                     content = @Content(schema = @Schema(implementation = UserResponse.class))),
             @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
-            @ApiResponse(responseCode = "409", description = "Incorrect login", content = @Content)})
+            @ApiResponse(responseCode = "409", description = "Login already exists", content = @Content)})
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createUser(@RequestBody UserData data) {
         return new ResponseEntity(userService.createUser(data), HttpStatus.CREATED);
