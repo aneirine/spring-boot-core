@@ -1,13 +1,15 @@
 package com.aneirine.springown.exception;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
+@Builder
 public class RestError {
     private int status;
-    @Schema(description = "Message" )
     private String message;
+
+
 }

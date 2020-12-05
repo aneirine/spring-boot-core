@@ -11,7 +11,6 @@ public class UserModelHandler {
         return UserResponse.builder()
                 .id(user.getId())
                 .login(user.getLogin())
-                .password(user.getPassword())
                 .build();
     }
 }
