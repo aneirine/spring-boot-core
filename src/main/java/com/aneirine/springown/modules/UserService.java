@@ -1,6 +1,7 @@
 package com.aneirine.springown.modules;
 
 import com.aneirine.springown.entities.User;
+import com.aneirine.springown.exception.ConflictException;
 import com.aneirine.springown.exception.NotFoundException;
 import com.aneirine.springown.modules.domain.UserData;
 import com.aneirine.springown.modules.domain.UserResponse;
@@ -14,7 +15,10 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserModelHandler userModelHandler;
 
-    public UserResponse createUser(UserData data){
+    public UserResponse createUser(UserData data) {
+        if (userRepository.existsByLogin(data.getLogin())) {
+            throw new ConflictException("LOGIN_ALREADY_EXISTS");
+        }
         User user = User.builder()
                 .login(data.getLogin())
                 .password(data.getPassword())
@@ -23,7 +27,7 @@ public class UserService {
         return userModelHandler.buildUserResponse(user);
     }
 
-    public UserResponse getUserById(long id){
+    public UserResponse getUserById(long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("USER_NOY_FOUND"));
         return userModelHandler.buildUserResponse(user);
