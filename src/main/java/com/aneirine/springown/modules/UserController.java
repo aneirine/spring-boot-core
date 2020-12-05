@@ -3,6 +3,7 @@ package com.aneirine.springown.modules;
 import com.aneirine.springown.modules.domain.UserData;
 import com.aneirine.springown.modules.domain.UserResponse;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -31,8 +32,15 @@ public class UserController {
         return new ResponseEntity(userService.createUser(data), HttpStatus.CREATED);
     }
 
+    @Operation(summary = "Get User", description = "Get User by id", tags = {"Users"})
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "User was found",
+                    content = @Content(schema = @Schema(implementation = UserResponse.class))),
+            @ApiResponse(responseCode = "400", description = "Bad Request", content = @Content),
+            @ApiResponse(responseCode = "404", description = "User not found", content = @Content)})
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity getUserById(@PathVariable long id) {
+    public ResponseEntity getUserById(@Parameter(description = "Id of the user to be obtained. Cannot be empty.", required = true)
+                                      @PathVariable long id) {
         return new ResponseEntity(userService.getUserById(id), HttpStatus.OK);
     }
 }
