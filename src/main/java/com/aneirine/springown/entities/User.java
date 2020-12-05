@@ -1,7 +1,6 @@
 package com.aneirine.springown.entities;
 
 import lombok.*;
-import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
