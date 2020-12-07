@@ -16,6 +16,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+
 import static com.aneirine.springown.exception.Exceptions.User.LOGIN_ALREADY_EXISTS;
 import static com.aneirine.springown.exception.Exceptions.User.USER_NOT_FOUND;
 
@@ -39,7 +41,6 @@ public class UserController {
         return new ResponseEntity(userService.createUser(data), HttpStatus.CREATED);
     }
 
-    //@ResponseStatus(code = HttpStatus.NO_CONTENT)
 
     @Operation(summary = "Get User", description = "Get User by id", tags = {"Users"})
     @ApiResponses(value = {
@@ -55,9 +56,14 @@ public class UserController {
         return new ResponseEntity(userService.getUserById(id), HttpStatus.OK);
     }
 
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity getAll() {
+        return new ResponseEntity(Arrays.asList(new UserResponse(1, "login1"), new UserResponse(2, "login2")), HttpStatus.OK);
+    }
+
     @GetMapping("/example")
-    public Object example(@Parameter(name = "json", schema = @Schema(description = "var 1", type = "string", allowableValues = {"1", "2"}))
-                                  String json) {
+    public Object example(@Parameter(name = "json", schema = @Schema(description = "var 1", type = "string", allowableValues = {"1", "2"})) String json) {
         return null;
     }
 }
