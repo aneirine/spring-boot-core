@@ -1,6 +1,11 @@
 package com.aneirine.springown.modules;
 
+import com.aneirine.springown.exception.RestError;
 import com.aneirine.springown.modules.domain.UserData;
+import com.aneirine.springown.modules.domain.UserResponse;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,6 +19,11 @@ public class UserController {
 
     private final UserService userService;
 
+    @ApiOperation(value = "Create user from data", response = UserResponse.class)
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "User was created", response = UserResponse.class),
+            @ApiResponse(code = 409, message = "Login Already Exists", response = RestError.class)
+    })
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createUser(@RequestBody UserData data) {
         return new ResponseEntity(userService.createUser(data), HttpStatus.CREATED);
