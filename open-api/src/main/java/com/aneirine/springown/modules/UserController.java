@@ -39,7 +39,6 @@ public class UserController {
         return new ResponseEntity(userService.createUser(data), HttpStatus.CREATED);
     }
 
-    //@ResponseStatus(code = HttpStatus.NO_CONTENT)
 
     @Operation(summary = "Get User", description = "Get User by id", tags = {"Users"})
     @ApiResponses(value = {
