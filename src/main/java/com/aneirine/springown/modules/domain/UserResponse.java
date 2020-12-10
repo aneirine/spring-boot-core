@@ -1,6 +1,7 @@
 package com.aneirine.springown.modules.domain;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 @Getter
@@ -8,11 +9,12 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ApiModel(value = "User response model")
 public class UserResponse {
 
-    @Schema(description = "Id of user", example = "1")
+    @ApiModelProperty(notes = "Id of user", example = "1")
     private long id;
-    @Schema(description = "Login for user", example = "aneirine")
+    @ApiModelProperty(notes = "Login for user", example = "aneirine")
     private String login;
 
 }

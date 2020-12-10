@@ -1,15 +1,17 @@
 package com.aneirine.springown.modules.domain;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@ApiModel(value = "User data model")
 public class UserData {
 
-    @Schema(description = "Login for user", example = "aneirine", required = true)
+    @ApiModelProperty(notes = "Login for user", example = "aneirine", required = true)
     private String login;
-    @Schema(description = "Password for user", example = "qwerty123!", required = true)
+    @ApiModelProperty(notes = "Password for user", example = "qwerty123!", required = true)
     private String password;
 }
