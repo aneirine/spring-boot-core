@@ -12,11 +12,13 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
+@EnableSwagger2
 public class SpringfoxConfiguration {
 
     @Bean
@@ -35,10 +37,12 @@ public class SpringfoxConfiguration {
         return new LinkDiscoverers(SimplePluginRegistry.create(plugins));
     }
 
+
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("Test Spring Boot Own API")
+        return new ApiInfoBuilder().title("TEST SPRING OWN API")
                 .description("")
                 .version("V1.0").build();
     }
+
 
 }

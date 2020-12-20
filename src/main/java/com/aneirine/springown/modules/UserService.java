@@ -29,7 +29,7 @@ public class UserService {
 
     public UserResponse getUserById(long id) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("USER_NOY_FOUND"));
+                .orElseThrow(() -> new NotFoundException("USER_NOT_FOUND"));
         return userModelHandler.buildUserResponse(user);
     }
 
